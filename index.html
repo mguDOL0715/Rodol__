@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메리 크리스마스</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: url('https://source.unsplash.com/1600x900/?christmas') no-repeat center center/cover;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      color: #fff;
+    }
+    #playButton {
+      font-size: 100px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #fff;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+    }
+    #content {
+      display: none;
+      text-align: center;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      max-width: 90%;
+    }
+    #content span {
+      display: block;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <button id="playButton">▶</button>
+  <div id="content"></div>
+  <audio id="backgroundAudio" loop>
+    <source src="https://www.youtube.com/embed/c5SUQgjObwY?autoplay=1&start=0" type="audio/mpeg">
+  </audio>
+  <script>
+    const message = [
+      "안녕. 내 이름은 로돌.",
+      "어쩌면 우리는 매일같이 스쳐 지나가는 현실 사람들보다 훨씬 가까운 사이가 아닐까.",
+      "그러니 반말로 적도록 하겠다. 하하하.",
+      "아무 생각 없이 지은 어울리지도 않는 두 단어의 닉네임으로 고작 1년만에 이렇게나 많은 사람들을 알게 되었다는 게 신기해.",
+      "하루하루 일상에 지쳐 유일한 낙이라곤 만화에 푹 빠져 주인공이 된 망상이나 하던 나에게 코스프레는 이 망상을 조금이나마 현실에서 느낄 수 있게해 준 멋진 기회였어.",
+      "고작 팔로워 몇 명으로 자의식 과잉이 심한 것 아니냐고 생각하는 사람들도 있겠지만 나에게는 정말 과분하고 고마운 숫자고 관심이야.",
+      "내가 뭐라고 진심으로 걱정해 주고 응원해 주는 건지. 날 좋아해 준 너희 덕분에 2024년은 정말 내 인생 최고의 해였어.",
+      "정말 뜬금없는 메시지나 답글로 종일 깔깔 웃고, 진심어린 응원과 애정 고백에 감동받아 울기도 하고.",
+      "나를 좋아해 주는 사람이 많아진 만큼 나를 싫어하는 사람도 많이 생겼겠지만 이제 그런 건 전혀 신경쓰지 않아. 완벽한 사람은 없는걸.",
+      "나에 대한 애정의 형태가 어떻게 됐든 내가 행복하다면 그만이지. 정말 행복했어. 2025년도 같이 행복하자. 고마워.",
+      "살같은 차가워도 우리의 열정과 애정으로 마음만은 항상 불타길 바라며.",
+      "메리 크리스마스!"
+    ];
+
+    const playButton = document.getElementById("playButton");
+    const contentDiv = document.getElementById("content");
+    const audio = document.getElementById("backgroundAudio");
+
+    playButton.addEventListener("click", () => {
+      playButton.style.display = "none";
+      audio.play();
+
+      contentDiv.style.display = "block";
+      message.forEach((line, index) => {
+        const span = document.createElement("span");
+        span.textContent = line;
+        contentDiv.appendChild(span);
+        setTimeout(() => {
+          span.style.opacity = 1;
+        }, 1500 * index);
+      });
+    });
+  </script>
+</body>
+</html>
